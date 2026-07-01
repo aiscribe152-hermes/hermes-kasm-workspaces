@@ -18,14 +18,14 @@ The `forge/` image is based on `kasmweb/desktop:1.19.0` and installs tools for m
 Published image tags:
 
 ```text
-ghcr.io/bboy8012/hermes-kasm-forge:1.0
-ghcr.io/bboy8012/hermes-kasm-forge:latest
+ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.0
+ghcr.io/aiscribe152-hermes/hermes-kasm-forge:latest
 ```
 
 ## Build locally
 
 ```bash
-docker build -t ghcr.io/bboy8012/hermes-kasm-forge:local -f forge/Dockerfile forge
+docker build -t ghcr.io/aiscribe152-hermes/hermes-kasm-forge:local -f forge/Dockerfile forge
 ```
 
 ## GitHub Actions publishing
@@ -35,8 +35,8 @@ The workflow at `.github/workflows/build-forge.yml` builds and pushes the Forge 
 The workflow publishes:
 
 ```text
-ghcr.io/bboy8012/hermes-kasm-forge:1.0
-ghcr.io/bboy8012/hermes-kasm-forge:latest
+ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.0
+ghcr.io/aiscribe152-hermes/hermes-kasm-forge:latest
 ```
 
 ## Register the image in Kasm Workspaces
@@ -51,13 +51,13 @@ In the Kasm administrator UI:
 5. Set the Docker image to:
 
    ```text
-   ghcr.io/bboy8012/hermes-kasm-forge:latest
+   ghcr.io/aiscribe152-hermes/hermes-kasm-forge:latest
    ```
 
    Or pin the versioned tag:
 
    ```text
-   ghcr.io/bboy8012/hermes-kasm-forge:1.0
+   ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.0
    ```
 
 6. Set the image type/compatibility to use the Kasm desktop/VNC style defaults inherited from `kasmweb/desktop:1.19.0`.

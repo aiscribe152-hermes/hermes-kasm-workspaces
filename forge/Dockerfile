@@ -4,7 +4,7 @@ FROM kasmweb/desktop:1.19.0
 
 LABEL org.opencontainers.image.title="Hermes Kasm Forge Workspace" \
       org.opencontainers.image.description="Kasm Workspaces desktop image for mechanical/design forge work: OpenSCAD, FreeCAD, Blender, Python, git, curl, jq, and build tools." \
-      org.opencontainers.image.source="https://github.com/bboy8012/hermes-kasm-workspaces"
+      org.opencontainers.image.source="https://github.com/aiscribe152-hermes/hermes-kasm-workspaces"
 
 USER root
 

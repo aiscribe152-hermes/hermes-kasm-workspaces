@@ -42,9 +42,9 @@ jobs:
           file: ./forge/Dockerfile
           push: true
           tags: |
-            ghcr.io/bboy8012/hermes-kasm-forge:1.0
-            ghcr.io/bboy8012/hermes-kasm-forge:latest
+            ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.0
+            ghcr.io/aiscribe152-hermes/hermes-kasm-forge:latest
           labels: |
             org.opencontainers.image.title=Hermes Kasm Forge Workspace
             org.opencontainers.image.description=Kasm workspace image for OpenSCAD, FreeCAD, Blender, Python, git, curl, jq, and build tools
-            org.opencontainers.image.source=https://github.com/bboy8012/hermes-kasm-workspaces
+            org.opencontainers.image.source=https://github.com/aiscribe152-hermes/hermes-kasm-workspaces
