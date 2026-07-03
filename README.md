@@ -9,6 +9,7 @@ The `forge/` image is based on `kasmweb/desktop:1.19.0` and installs tools for m
 - OpenSCAD
 - FreeCAD
 - Blender
+- Bambu Studio
 - git
 - Python 3, pip, and venv
 - curl
@@ -18,7 +19,7 @@ The `forge/` image is based on `kasmweb/desktop:1.19.0` and installs tools for m
 Published image tags:
 
 ```text
-ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.0
+ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.1
 ghcr.io/aiscribe152-hermes/hermes-kasm-forge:latest
 ```
 
@@ -35,7 +36,7 @@ The workflow at `.github/workflows/build-forge.yml` builds and pushes the Forge 
 The workflow publishes:
 
 ```text
-ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.0
+ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.1
 ghcr.io/aiscribe152-hermes/hermes-kasm-forge:latest
 ```
 
@@ -57,7 +58,7 @@ In the Kasm administrator UI:
    Or pin the versioned tag:
 
    ```text
-   ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.0
+   ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.1
    ```
 
 6. Set the image type/compatibility to use the Kasm desktop/VNC style defaults inherited from `kasmweb/desktop:1.19.0`.
@@ -69,6 +70,7 @@ In the Kasm administrator UI:
    openscad --version
    freecad --version
    blender --version
+   bambu-studio --help
    git --version
    python --version
    curl --version
