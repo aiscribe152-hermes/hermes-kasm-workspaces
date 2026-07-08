@@ -27,11 +27,25 @@ ghcr.io/aiscribe152-hermes/hermes-kasm-forge:latest
 
 ```bash
 docker build -t ghcr.io/aiscribe152-hermes/hermes-kasm-forge:local -f forge/Dockerfile forge
+docker build -t ghcr.io/aiscribe152-hermes/hermes-kasm-freecad:local -f freecad/Dockerfile freecad
+```
+
+## FreeCAD workspace
+
+The `freecad/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0`. It installs the upstream FreeCAD AppImage and only the runtime packages needed to launch it in Kasm.
+
+Published image tags:
+
+```text
+ghcr.io/aiscribe152-hermes/hermes-kasm-freecad:1.0
+ghcr.io/aiscribe152-hermes/hermes-kasm-freecad:latest
 ```
 
 ## GitHub Actions publishing
 
 The workflow at `.github/workflows/build-forge.yml` builds and pushes the Forge image to GitHub Container Registry on pushes to `main` that touch `forge/**` or the workflow file. It can also be started manually from the GitHub Actions UI.
+
+The workflow at `.github/workflows/build-freecad.yml` builds and pushes the FreeCAD image on pushes to `main` that touch `freecad/**` or the workflow file. It can also be started manually from the GitHub Actions UI.
 
 The workflow publishes:
 
