@@ -4,6 +4,7 @@ FROM kasmweb/desktop:1.19.0
 
 LABEL org.opencontainers.image.title="Hermes Kasm Forge Workspace" \
       org.opencontainers.image.description="Kasm Workspaces desktop image for mechanical/design forge work: OpenSCAD, FreeCAD, Blender, Bambu Studio, Python, git, curl, jq, and build tools." \
+      org.opencontainers.image.version="1.2" \
       org.opencontainers.image.source="https://github.com/aiscribe152-hermes/hermes-kasm-workspaces"
 
 USER root
@@ -26,6 +27,7 @@ RUN apt-get update \
         git \
         jq \
         libfuse2 \
+        libwebkit2gtk-4.1-0 \
         make \
         openscad \
         pkg-config \
