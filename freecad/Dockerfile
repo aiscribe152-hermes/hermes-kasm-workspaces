@@ -20,6 +20,7 @@ RUN apt-get update \
         ca-certificates \
         curl \
         libfuse2 \
+        libxcb-cursor0 \
     && mkdir -p /opt/freecad \
     && curl -fL "${FREECAD_APPIMAGE_URL}" -o /opt/freecad/FreeCAD.AppImage \
     && chmod 0755 /opt/freecad/FreeCAD.AppImage \
