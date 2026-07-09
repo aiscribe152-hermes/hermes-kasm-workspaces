@@ -26,6 +26,7 @@ RUN apt-get update \
         'Terminal=false' \
         'Categories=Graphics;Engineering;3DGraphics;' \
         > /usr/share/applications/openscad.desktop \
+    && openscad --version \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
