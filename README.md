@@ -36,7 +36,7 @@ The `freecad/` image is a smaller single-application workspace based on `kasmweb
 Published image tags:
 
 ```text
-ghcr.io/aiscribe152-hermes/kasm-freecad:1.0
+ghcr.io/aiscribe152-hermes/kasm-freecad:1.1
 ghcr.io/aiscribe152-hermes/kasm-freecad:latest
 ```
 
@@ -47,7 +47,7 @@ The `openscad/` image is a smaller single-application workspace based on `kasmwe
 Published image tags:
 
 ```text
-ghcr.io/aiscribe152-hermes/kasm-openscad:1.0
+ghcr.io/aiscribe152-hermes/kasm-openscad:1.1
 ghcr.io/aiscribe152-hermes/kasm-openscad:latest
 ```
 
@@ -64,6 +64,8 @@ docker build -t ghcr.io/aiscribe152-hermes/kasm-openscad:local -f openscad/Docke
 The workflow at `.github/workflows/build-forge.yml` builds and pushes the Forge image to GitHub Container Registry on pushes to `main` that touch `forge/**` or the workflow file. It can also be started manually from the GitHub Actions UI.
 
 The workflow at `.github/workflows/build-freecad.yml` builds and pushes the FreeCAD image on pushes to `main` that touch `freecad/**` or the workflow file. It can also be started manually from the GitHub Actions UI.
+
+The standalone app images include `/dockerstartup/custom_startup.sh` so the target application opens automatically when the Kasm session starts.
 
 The workflow at `.github/workflows/build-openscad.yml` builds and pushes the OpenSCAD image on pushes to `main` that touch `openscad/**` or the workflow file. It can also be started manually from the GitHub Actions UI.
 
@@ -87,8 +89,8 @@ In the Kasm administrator UI:
    Or pin the versioned tags:
 
    ```text
-   ghcr.io/aiscribe152-hermes/kasm-freecad:1.0
-   ghcr.io/aiscribe152-hermes/kasm-openscad:1.0
+   ghcr.io/aiscribe152-hermes/kasm-freecad:1.1
+   ghcr.io/aiscribe152-hermes/kasm-openscad:1.1
    ```
 
 6. Set the image type/compatibility to use the Kasm desktop/VNC style defaults inherited from `kasmweb/core-ubuntu-jammy:1.19.0`.

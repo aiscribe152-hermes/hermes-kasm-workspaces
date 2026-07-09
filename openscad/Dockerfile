@@ -4,7 +4,7 @@ FROM kasmweb/core-ubuntu-jammy:1.19.0
 
 LABEL org.opencontainers.image.title="Kasm OpenSCAD Workspace" \
       org.opencontainers.image.description="Small Kasm Workspaces desktop image for OpenSCAD parametric CAD." \
-      org.opencontainers.image.version="1.0" \
+      org.opencontainers.image.version="1.1" \
       org.opencontainers.image.source="https://github.com/aiscribe152-hermes/hermes-kasm-workspaces"
 
 USER root
@@ -29,6 +29,11 @@ RUN apt-get update \
     && openscad --version \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+COPY custom_startup.sh /dockerstartup/custom_startup.sh
+
+RUN chmod 0755 /dockerstartup/custom_startup.sh \
+    && bash -n /dockerstartup/custom_startup.sh
 
 USER kasm-user
 
