@@ -51,12 +51,24 @@ ghcr.io/aiscribe152-hermes/kasm-openscad:1.1
 ghcr.io/aiscribe152-hermes/kasm-openscad:latest
 ```
 
+### Bambu Studio workspace
+
+The `bambu-studio/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0`. It installs the Bambu Studio AppImage plus the minimum runtime dependencies currently known from the Forge image.
+
+Published image tags:
+
+```text
+ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.1
+ghcr.io/aiscribe152-hermes/kasm-bambu-studio:latest
+```
+
 ## Build locally
 
 ```bash
 docker build -t ghcr.io/aiscribe152-hermes/hermes-kasm-forge:local -f forge/Dockerfile forge
 docker build -t ghcr.io/aiscribe152-hermes/kasm-freecad:local -f freecad/Dockerfile freecad
 docker build -t ghcr.io/aiscribe152-hermes/kasm-openscad:local -f openscad/Dockerfile openscad
+docker build -t ghcr.io/aiscribe152-hermes/kasm-bambu-studio:local -f bambu-studio/Dockerfile bambu-studio
 ```
 
 ## GitHub Actions publishing
@@ -69,6 +81,8 @@ The standalone app images include `/dockerstartup/custom_startup.sh` so the targ
 
 The workflow at `.github/workflows/build-openscad.yml` builds and pushes the OpenSCAD image on pushes to `main` that touch `openscad/**` or the workflow file. It can also be started manually from the GitHub Actions UI.
 
+The workflow at `.github/workflows/build-bambu-studio.yml` builds and pushes the Bambu Studio image on pushes to `main` that touch `bambu-studio/**` or the workflow file. It can also be started manually from the GitHub Actions UI.
+
 ## Register images in Kasm Workspaces
 
 In the Kasm administrator UI:
@@ -79,11 +93,13 @@ In the Kasm administrator UI:
 4. Use the app name as the workspace name, for example:
    - `FreeCAD`
    - `OpenSCAD`
+   - `Bambu Studio`
 5. Set the Docker image to the appropriate standalone image:
 
    ```text
    ghcr.io/aiscribe152-hermes/kasm-freecad:latest
    ghcr.io/aiscribe152-hermes/kasm-openscad:latest
+   ghcr.io/aiscribe152-hermes/kasm-bambu-studio:latest
    ```
 
    Or pin the versioned tags:
@@ -91,6 +107,7 @@ In the Kasm administrator UI:
    ```text
    ghcr.io/aiscribe152-hermes/kasm-freecad:1.1
    ghcr.io/aiscribe152-hermes/kasm-openscad:1.1
+   ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.1
    ```
 
 6. Set the image type/compatibility to use the Kasm desktop/VNC style defaults inherited from `kasmweb/core-ubuntu-jammy:1.19.0`.
@@ -101,6 +118,7 @@ In the Kasm administrator UI:
    ```bash
    freecad --version
    openscad --version
+   bambu-studio --help
    ```
 
 ## GHCR access notes
