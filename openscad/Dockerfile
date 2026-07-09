@@ -4,7 +4,7 @@ FROM kasmweb/core-ubuntu-jammy:1.19.0
 
 LABEL org.opencontainers.image.title="Kasm OpenSCAD Workspace" \
       org.opencontainers.image.description="Small Kasm Workspaces desktop image for OpenSCAD parametric CAD." \
-      org.opencontainers.image.version="1.1" \
+      org.opencontainers.image.version="1.2" \
       org.opencontainers.image.source="https://github.com/aiscribe152-hermes/hermes-kasm-workspaces"
 
 USER root

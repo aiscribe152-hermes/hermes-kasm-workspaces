@@ -42,10 +42,10 @@ jobs:
           file: ./openscad/Dockerfile
           push: true
           tags: |
-            ghcr.io/aiscribe152-hermes/kasm-openscad:1.1
+            ghcr.io/aiscribe152-hermes/kasm-openscad:1.2
             ghcr.io/aiscribe152-hermes/kasm-openscad:latest
           labels: |
             org.opencontainers.image.title=Kasm OpenSCAD Workspace
             org.opencontainers.image.description=Small Kasm workspace image for OpenSCAD parametric CAD
-            org.opencontainers.image.version=1.1
+            org.opencontainers.image.version=1.2
             org.opencontainers.image.source=https://github.com/aiscribe152-hermes/hermes-kasm-workspaces

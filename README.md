@@ -36,7 +36,7 @@ The `freecad/` image is a smaller single-application workspace based on `kasmweb
 Published image tags:
 
 ```text
-ghcr.io/aiscribe152-hermes/kasm-freecad:1.1
+ghcr.io/aiscribe152-hermes/kasm-freecad:1.2
 ghcr.io/aiscribe152-hermes/kasm-freecad:latest
 ```
 
@@ -47,18 +47,18 @@ The `openscad/` image is a smaller single-application workspace based on `kasmwe
 Published image tags:
 
 ```text
-ghcr.io/aiscribe152-hermes/kasm-openscad:1.1
+ghcr.io/aiscribe152-hermes/kasm-openscad:1.2
 ghcr.io/aiscribe152-hermes/kasm-openscad:latest
 ```
 
 ### Bambu Studio workspace
 
-The `bambu-studio/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0`. It installs the Bambu Studio AppImage plus the minimum runtime dependencies currently known from the Forge image.
+The `bambu-studio/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0`. It installs the Bambu Studio AppImage, its runtime dependencies, and Google Chrome as the default browser for Bambu cloud sign-in flows.
 
 Published image tags:
 
 ```text
-ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.1
+ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.2
 ghcr.io/aiscribe152-hermes/kasm-bambu-studio:latest
 ```
 
@@ -105,9 +105,9 @@ In the Kasm administrator UI:
    Or pin the versioned tags:
 
    ```text
-   ghcr.io/aiscribe152-hermes/kasm-freecad:1.1
-   ghcr.io/aiscribe152-hermes/kasm-openscad:1.1
-   ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.1
+   ghcr.io/aiscribe152-hermes/kasm-freecad:1.2
+   ghcr.io/aiscribe152-hermes/kasm-openscad:1.2
+   ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.2
    ```
 
 6. Set the image type/compatibility to use the Kasm desktop/VNC style defaults inherited from `kasmweb/core-ubuntu-jammy:1.19.0`.

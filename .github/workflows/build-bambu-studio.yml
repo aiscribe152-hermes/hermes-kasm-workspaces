@@ -42,10 +42,10 @@ jobs:
           file: ./bambu-studio/Dockerfile
           push: true
           tags: |
-            ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.1
+            ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.2
             ghcr.io/aiscribe152-hermes/kasm-bambu-studio:latest
           labels: |
             org.opencontainers.image.title=Kasm Bambu Studio Workspace
             org.opencontainers.image.description=Small Kasm workspace image for Bambu Studio slicing and 3D printing workflows
-            org.opencontainers.image.version=1.1
+            org.opencontainers.image.version=1.2
             org.opencontainers.image.source=https://github.com/aiscribe152-hermes/hermes-kasm-workspaces

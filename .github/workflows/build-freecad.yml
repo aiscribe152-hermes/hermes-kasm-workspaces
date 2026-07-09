@@ -42,10 +42,10 @@ jobs:
           file: ./freecad/Dockerfile
           push: true
           tags: |
-            ghcr.io/aiscribe152-hermes/kasm-freecad:1.1
+            ghcr.io/aiscribe152-hermes/kasm-freecad:1.2
             ghcr.io/aiscribe152-hermes/kasm-freecad:latest
           labels: |
             org.opencontainers.image.title=Kasm FreeCAD Workspace
             org.opencontainers.image.description=Small Kasm workspace image for FreeCAD using the upstream FreeCAD AppImage
-            org.opencontainers.image.version=1.1
+            org.opencontainers.image.version=1.2
             org.opencontainers.image.source=https://github.com/aiscribe152-hermes/hermes-kasm-workspaces
