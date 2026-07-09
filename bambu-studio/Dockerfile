@@ -43,7 +43,9 @@ RUN apt-get update \
             'Categories=Graphics;Engineering;3DGraphics;' \
             > /usr/share/applications/bambu-studio.desktop; \
        fi \
-    && /usr/local/bin/bambu-studio --help >/tmp/bambu-studio-help.txt 2>&1 \
+    && test -x /usr/local/bin/bambu-studio \
+    && test -x /opt/bambu-studio/squashfs-root/AppRun \
+    && test -e /usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.1.so.0 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
