@@ -1,12 +1,12 @@
-name: Build FreeCAD Kasm Workspace
+name: Build OpenSCAD Kasm Workspace
 
 on:
   push:
     branches:
       - main
     paths:
-      - freecad/**
-      - .github/workflows/build-freecad.yml
+      - openscad/**
+      - .github/workflows/build-openscad.yml
   workflow_dispatch:
 
 permissions:
@@ -14,7 +14,7 @@ permissions:
   packages: write
 
 concurrency:
-  group: build-freecad-${{ github.ref }}
+  group: build-openscad-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -35,17 +35,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push FreeCAD workspace image
+      - name: Build and push OpenSCAD workspace image
         uses: docker/build-push-action@v6
         with:
-          context: ./freecad
-          file: ./freecad/Dockerfile
+          context: ./openscad
+          file: ./openscad/Dockerfile
           push: true
           tags: |
-            ghcr.io/aiscribe152-hermes/kasm-freecad:1.0
-            ghcr.io/aiscribe152-hermes/kasm-freecad:latest
+            ghcr.io/aiscribe152-hermes/kasm-openscad:1.0
+            ghcr.io/aiscribe152-hermes/kasm-openscad:latest
           labels: |
-            org.opencontainers.image.title=Kasm FreeCAD Workspace
-            org.opencontainers.image.description=Small Kasm workspace image for FreeCAD using the upstream FreeCAD AppImage
+            org.opencontainers.image.title=Kasm OpenSCAD Workspace
+            org.opencontainers.image.description=Small Kasm workspace image for OpenSCAD parametric CAD
             org.opencontainers.image.version=1.0
             org.opencontainers.image.source=https://github.com/aiscribe152-hermes/hermes-kasm-workspaces

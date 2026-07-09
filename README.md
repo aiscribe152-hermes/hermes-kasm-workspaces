@@ -4,7 +4,7 @@ Custom Kasm Workspaces images for Hermes engineering workflows.
 
 ## Forge workspace
 
-The `forge/` image is based on `kasmweb/desktop:1.19.0` and installs tools for mechanical design, CAD, fabrication prep, and general engineering work:
+The `forge/` image is based on `kasmweb/desktop:1.19.0` and remains the full multi-tool workspace for mechanical design, CAD, fabrication prep, and general engineering work:
 
 - OpenSCAD
 - FreeCAD
@@ -23,22 +23,40 @@ ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.2
 ghcr.io/aiscribe152-hermes/hermes-kasm-forge:latest
 ```
 
-## Build locally
+Hermes Forge is intentionally kept until explicitly retired.
 
-```bash
-docker build -t ghcr.io/aiscribe152-hermes/hermes-kasm-forge:local -f forge/Dockerfile forge
-docker build -t ghcr.io/aiscribe152-hermes/hermes-kasm-freecad:local -f freecad/Dockerfile freecad
-```
+## Standalone application workspaces
 
-## FreeCAD workspace
+Standalone app images use the shorter `kasm-app_name` naming convention instead of `hermes-kasm-app_name`.
+
+### FreeCAD workspace
 
 The `freecad/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0`. It installs the upstream FreeCAD AppImage and only the runtime packages needed to launch it in Kasm.
 
 Published image tags:
 
 ```text
-ghcr.io/aiscribe152-hermes/hermes-kasm-freecad:1.0
-ghcr.io/aiscribe152-hermes/hermes-kasm-freecad:latest
+ghcr.io/aiscribe152-hermes/kasm-freecad:1.0
+ghcr.io/aiscribe152-hermes/kasm-freecad:latest
+```
+
+### OpenSCAD workspace
+
+The `openscad/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0`. It installs OpenSCAD from Ubuntu packages and keeps the image focused on parametric CAD/scripted geometry work.
+
+Published image tags:
+
+```text
+ghcr.io/aiscribe152-hermes/kasm-openscad:1.0
+ghcr.io/aiscribe152-hermes/kasm-openscad:latest
+```
+
+## Build locally
+
+```bash
+docker build -t ghcr.io/aiscribe152-hermes/hermes-kasm-forge:local -f forge/Dockerfile forge
+docker build -t ghcr.io/aiscribe152-hermes/kasm-freecad:local -f freecad/Dockerfile freecad
+docker build -t ghcr.io/aiscribe152-hermes/kasm-openscad:local -f openscad/Dockerfile openscad
 ```
 
 ## GitHub Actions publishing
@@ -47,54 +65,45 @@ The workflow at `.github/workflows/build-forge.yml` builds and pushes the Forge 
 
 The workflow at `.github/workflows/build-freecad.yml` builds and pushes the FreeCAD image on pushes to `main` that touch `freecad/**` or the workflow file. It can also be started manually from the GitHub Actions UI.
 
-The workflow publishes:
+The workflow at `.github/workflows/build-openscad.yml` builds and pushes the OpenSCAD image on pushes to `main` that touch `openscad/**` or the workflow file. It can also be started manually from the GitHub Actions UI.
 
-```text
-ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.2
-ghcr.io/aiscribe152-hermes/hermes-kasm-forge:latest
-```
-
-## Register the image in Kasm Workspaces
+## Register images in Kasm Workspaces
 
 In the Kasm administrator UI:
 
 1. Go to `Admin` -> `Workspaces` -> `Workspaces`.
 2. Select `Add Workspace`.
 3. Choose a Docker image based workspace.
-4. Use a clear name, for example:
-   - `Hermes Forge`
-5. Set the Docker image to:
+4. Use the app name as the workspace name, for example:
+   - `FreeCAD`
+   - `OpenSCAD`
+5. Set the Docker image to the appropriate standalone image:
 
    ```text
-   ghcr.io/aiscribe152-hermes/hermes-kasm-forge:latest
+   ghcr.io/aiscribe152-hermes/kasm-freecad:latest
+   ghcr.io/aiscribe152-hermes/kasm-openscad:latest
    ```
 
-   Or pin the versioned tag:
+   Or pin the versioned tags:
 
    ```text
-   ghcr.io/aiscribe152-hermes/hermes-kasm-forge:1.2
+   ghcr.io/aiscribe152-hermes/kasm-freecad:1.0
+   ghcr.io/aiscribe152-hermes/kasm-openscad:1.0
    ```
 
-6. Set the image type/compatibility to use the Kasm desktop/VNC style defaults inherited from `kasmweb/desktop:1.19.0`.
+6. Set the image type/compatibility to use the Kasm desktop/VNC style defaults inherited from `kasmweb/core-ubuntu-jammy:1.19.0`.
 7. Configure CPU, memory, GPU, persistent profile, and sharing settings according to your Kasm environment.
 8. Save the workspace.
-9. Launch a test session and verify the tools are available:
+9. Launch a test session and verify the tool is available:
 
    ```bash
-   openscad --version
    freecad --version
-   blender --version
-   bambu-studio --help
-   git --version
-   python --version
-   curl --version
-   jq --version
-   gcc --version
+   openscad --version
    ```
 
 ## GHCR access notes
 
-If the Kasm deployment cannot pull the image anonymously, either:
+If the Kasm deployment cannot pull images anonymously, either:
 
 - make the GHCR package public, or
 - configure a Docker registry credential in Kasm for `ghcr.io` with a GitHub token that has package read access.
