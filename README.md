@@ -31,34 +31,34 @@ Standalone app images use the shorter `kasm-app_name` naming convention instead 
 
 ### FreeCAD workspace
 
-The `freecad/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0`. It installs the upstream FreeCAD AppImage and only the runtime packages needed to launch it in Kasm.
+The `freecad/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0-rolling-weekly`. It installs the upstream FreeCAD AppImage and only the runtime packages needed to launch it in Kasm.
 
 Published image tags:
 
 ```text
-ghcr.io/aiscribe152-hermes/kasm-freecad:1.2
+ghcr.io/aiscribe152-hermes/kasm-freecad:1.19.0-rolling-weekly
 ghcr.io/aiscribe152-hermes/kasm-freecad:latest
 ```
 
 ### OpenSCAD workspace
 
-The `openscad/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0`. It installs OpenSCAD from Ubuntu packages and keeps the image focused on parametric CAD/scripted geometry work.
+The `openscad/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0-rolling-weekly`. It installs OpenSCAD from Ubuntu packages and keeps the image focused on parametric CAD/scripted geometry work.
 
 Published image tags:
 
 ```text
-ghcr.io/aiscribe152-hermes/kasm-openscad:1.2
+ghcr.io/aiscribe152-hermes/kasm-openscad:1.19.0-rolling-weekly
 ghcr.io/aiscribe152-hermes/kasm-openscad:latest
 ```
 
 ### Bambu Studio workspace
 
-The `bambu-studio/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0`. It installs the Bambu Studio AppImage, its runtime dependencies, and Google Chrome as the default browser for Bambu cloud sign-in flows.
+The `bambu-studio/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0-rolling-weekly`. It installs the Bambu Studio AppImage, its runtime dependencies, and Google Chrome as the default browser for Bambu cloud sign-in flows.
 
 Published image tags:
 
 ```text
-ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.2
+ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.19.0-rolling-weekly
 ghcr.io/aiscribe152-hermes/kasm-bambu-studio:latest
 ```
 
@@ -102,15 +102,15 @@ In the Kasm administrator UI:
    ghcr.io/aiscribe152-hermes/kasm-bambu-studio:latest
    ```
 
-   Or pin the versioned tags:
+   Use the Kasm-aligned rolling tags:
 
    ```text
-   ghcr.io/aiscribe152-hermes/kasm-freecad:1.2
-   ghcr.io/aiscribe152-hermes/kasm-openscad:1.2
-   ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.2
+   ghcr.io/aiscribe152-hermes/kasm-freecad:1.19.0-rolling-weekly
+   ghcr.io/aiscribe152-hermes/kasm-openscad:1.19.0-rolling-weekly
+   ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.19.0-rolling-weekly
    ```
 
-6. Set the image type/compatibility to use the Kasm desktop/VNC style defaults inherited from `kasmweb/core-ubuntu-jammy:1.19.0`.
+6. Set the image type/compatibility to use the Kasm desktop/VNC style defaults inherited from `kasmweb/core-ubuntu-jammy:1.19.0-rolling-weekly`.
 7. Configure CPU, memory, GPU, persistent profile, and sharing settings according to your Kasm environment.
 8. Save the workspace.
 9. Launch a test session and verify the tool is available:

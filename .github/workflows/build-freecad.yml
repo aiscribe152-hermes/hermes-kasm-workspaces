@@ -7,6 +7,9 @@ on:
     paths:
       - freecad/**
       - .github/workflows/build-freecad.yml
+  schedule:
+    # Rebuild weekly to pick up Kasm 1.19 rolling base-image updates.
+    - cron: "23 9 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -41,11 +44,14 @@ jobs:
           context: ./freecad
           file: ./freecad/Dockerfile
           push: true
+          platforms: linux/amd64
+          provenance: false
+          sbom: false
           tags: |
-            ghcr.io/aiscribe152-hermes/kasm-freecad:1.2
+            ghcr.io/aiscribe152-hermes/kasm-freecad:1.19.0-rolling-weekly
             ghcr.io/aiscribe152-hermes/kasm-freecad:latest
           labels: |
             org.opencontainers.image.title=Kasm FreeCAD Workspace
             org.opencontainers.image.description=Small Kasm workspace image for FreeCAD using the upstream FreeCAD AppImage
-            org.opencontainers.image.version=1.2
+            org.opencontainers.image.version=1.19.0-rolling-weekly
             org.opencontainers.image.source=https://github.com/aiscribe152-hermes/hermes-kasm-workspaces
