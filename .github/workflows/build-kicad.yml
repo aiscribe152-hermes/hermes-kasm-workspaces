@@ -1,0 +1,57 @@
+name: Build KiCad Kasm Workspace
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - kicad/**
+      - .github/workflows/build-kicad.yml
+  schedule:
+    # Rebuild weekly to pick up Kasm 1.19 rolling base-image updates.
+    - cron: "37 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: build-kicad-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push KiCad workspace image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./kicad
+          file: ./kicad/Dockerfile
+          push: true
+          platforms: linux/amd64
+          provenance: false
+          sbom: false
+          tags: |
+            ghcr.io/aiscribe152-hermes/kasm-kicad:1.19.0-rolling-weekly
+            ghcr.io/aiscribe152-hermes/kasm-kicad:latest
+          labels: |
+            org.opencontainers.image.title=Kasm KiCad Workspace
+            org.opencontainers.image.description=Small Kasm workspace image for KiCad PCB design and electronics CAD
+            org.opencontainers.image.version=1.19.0-rolling-weekly
+            org.opencontainers.image.source=https://github.com/aiscribe152-hermes/hermes-kasm-workspaces

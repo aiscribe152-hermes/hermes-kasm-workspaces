@@ -51,6 +51,18 @@ ghcr.io/aiscribe152-hermes/kasm-openscad:1.19.0-rolling-weekly
 ghcr.io/aiscribe152-hermes/kasm-openscad:latest
 ```
 
+
+### KiCad workspace
+
+The `kicad/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0-rolling-weekly`. It installs KiCad for electronic schematic capture and PCB layout work.
+
+Published image tags:
+
+```text
+ghcr.io/aiscribe152-hermes/kasm-kicad:1.19.0-rolling-weekly
+ghcr.io/aiscribe152-hermes/kasm-kicad:latest
+```
+
 ### Bambu Studio workspace
 
 The `bambu-studio/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0-rolling-weekly`. It installs the Bambu Studio AppImage, its runtime dependencies, and Google Chrome as the default browser for Bambu cloud sign-in flows.
@@ -69,6 +81,7 @@ docker build -t ghcr.io/aiscribe152-hermes/hermes-kasm-forge:local -f forge/Dock
 docker build -t ghcr.io/aiscribe152-hermes/kasm-freecad:local -f freecad/Dockerfile freecad
 docker build -t ghcr.io/aiscribe152-hermes/kasm-openscad:local -f openscad/Dockerfile openscad
 docker build -t ghcr.io/aiscribe152-hermes/kasm-bambu-studio:local -f bambu-studio/Dockerfile bambu-studio
+docker build -t ghcr.io/aiscribe152-hermes/kasm-kicad:local -f kicad/Dockerfile kicad
 ```
 
 ## GitHub Actions publishing
@@ -83,6 +96,8 @@ The workflow at `.github/workflows/build-openscad.yml` builds and pushes the Ope
 
 The workflow at `.github/workflows/build-bambu-studio.yml` builds and pushes the Bambu Studio image on pushes to `main` that touch `bambu-studio/**` or the workflow file. It can also be started manually from the GitHub Actions UI.
 
+The workflow at `.github/workflows/build-kicad.yml` builds and pushes the KiCad image on pushes to `main` that touch `kicad/**` or the workflow file. It also rebuilds weekly and can be started manually from the GitHub Actions UI.
+
 ## Register images in Kasm Workspaces
 
 In the Kasm administrator UI:
@@ -94,12 +109,14 @@ In the Kasm administrator UI:
    - `FreeCAD`
    - `OpenSCAD`
    - `Bambu Studio`
+   - `KiCad`
 5. Set the Docker image to the appropriate standalone image:
 
    ```text
    ghcr.io/aiscribe152-hermes/kasm-freecad:latest
    ghcr.io/aiscribe152-hermes/kasm-openscad:latest
    ghcr.io/aiscribe152-hermes/kasm-bambu-studio:latest
+   ghcr.io/aiscribe152-hermes/kasm-kicad:latest
    ```
 
    Use the Kasm-aligned rolling tags:
@@ -108,6 +125,7 @@ In the Kasm administrator UI:
    ghcr.io/aiscribe152-hermes/kasm-freecad:1.19.0-rolling-weekly
    ghcr.io/aiscribe152-hermes/kasm-openscad:1.19.0-rolling-weekly
    ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.19.0-rolling-weekly
+   ghcr.io/aiscribe152-hermes/kasm-kicad:1.19.0-rolling-weekly
    ```
 
 6. Set the image type/compatibility to use the Kasm desktop/VNC style defaults inherited from `kasmweb/core-ubuntu-jammy:1.19.0-rolling-weekly`.
@@ -119,6 +137,7 @@ In the Kasm administrator UI:
    freecad --version
    openscad --version
    bambu-studio --help
+   kicad --version
    ```
 
 ## GHCR access notes
