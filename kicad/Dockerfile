@@ -31,7 +31,8 @@ RUN apt-get update \
             'Categories=Development;Engineering;Electronics;' \
             > /usr/share/applications/kicad.desktop; \
        fi \
-    && kicad --version \
+    && test -x /usr/bin/kicad \
+    && dpkg-query -W kicad kicad-footprints kicad-symbols kicad-templates \
     && if command -v kicad-cli >/dev/null 2>&1; then kicad-cli version; fi \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
