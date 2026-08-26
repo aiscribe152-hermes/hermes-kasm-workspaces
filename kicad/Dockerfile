@@ -3,7 +3,7 @@
 FROM kasmweb/core-ubuntu-jammy:1.19.0-rolling-weekly
 
 LABEL org.opencontainers.image.title="Kasm KiCad Workspace" \
-      org.opencontainers.image.description="Small Kasm Workspaces desktop image for KiCad PCB design and electronics CAD." \
+      org.opencontainers.image.description="Small Kasm Workspaces desktop image for KiCad 10 PCB design and electronics CAD." \
       org.opencontainers.image.version="1.19.0-rolling-weekly" \
       org.opencontainers.image.source="https://github.com/aiscribe152-hermes/hermes-kasm-workspaces"
 
@@ -14,6 +14,16 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
+        curl \
+        gpg \
+    && install -d -m 0755 /etc/apt/keyrings \
+    && curl -fsSL 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xFDA854F61C4D0D9572BB95E5245D5502FAD7A805' \
+        | gpg --dearmor -o /etc/apt/keyrings/kicad-10.0-releases.gpg \
+    && chmod 0644 /etc/apt/keyrings/kicad-10.0-releases.gpg \
+    && printf '%s\n' 'deb [signed-by=/etc/apt/keyrings/kicad-10.0-releases.gpg] https://ppa.launchpadcontent.net/kicad/kicad-10.0-releases/ubuntu jammy main' \
+        > /etc/apt/sources.list.d/kicad-10.0-releases.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
         kicad \
         kicad-footprints \
         kicad-symbols \

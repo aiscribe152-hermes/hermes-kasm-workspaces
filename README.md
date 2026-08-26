@@ -54,7 +54,7 @@ ghcr.io/aiscribe152-hermes/kasm-openscad:latest
 
 ### KiCad workspace
 
-The `kicad/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0-rolling-weekly`. It installs KiCad for electronic schematic capture and PCB layout work.
+The `kicad/` image is a smaller single-application workspace based on `kasmweb/core-ubuntu-jammy:1.19.0-rolling-weekly`. It installs KiCad 10 from the official KiCad `kicad-10.0-releases` Ubuntu PPA for electronic schematic capture and PCB layout work.
 
 Published image tags:
 
