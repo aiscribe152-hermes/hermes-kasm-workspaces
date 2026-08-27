@@ -55,3 +55,24 @@ jobs:
             org.opencontainers.image.description=Small Kasm workspace image for KiCad 10 PCB design and electronics CAD
             org.opencontainers.image.version=1.19.0-rolling-weekly
             org.opencontainers.image.source=https://github.com/aiscribe152-hermes/hermes-kasm-workspaces
+
+      - name: Smoke test published KiCad workspace image
+        run: |
+          set -euo pipefail
+          docker pull ghcr.io/aiscribe152-hermes/kasm-kicad:1.19.0-rolling-weekly
+          docker run -d --rm --name kicad-smoke \
+            -e VNC_PW=smoke-test-password \
+            ghcr.io/aiscribe152-hermes/kasm-kicad:1.19.0-rolling-weekly
+          cleanup() { docker logs kicad-smoke || true; docker rm -f kicad-smoke || true; }
+          trap cleanup EXIT
+          for _ in $(seq 1 90); do
+            if docker exec kicad-smoke bash -lc 'pgrep -x kicad >/dev/null 2>&1'; then
+              break
+            fi
+            if ! docker ps --format '{{.Names}}' | grep -qx kicad-smoke; then
+              echo 'KiCad smoke container exited before the app started' >&2
+              exit 1
+            fi
+            sleep 1
+          done
+          docker exec kicad-smoke bash -lc 'kicad-cli version; dpkg-query -W kicad kicad-footprints kicad-libraries kicad-symbols kicad-templates; pgrep -a kicad; test -s /tmp/kicad-startup.log || true; cat /tmp/kicad-startup.log || true'
