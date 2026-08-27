@@ -60,6 +60,7 @@ Published image tags:
 
 ```text
 ghcr.io/aiscribe152-hermes/kasm-kicad:1.19.0-rolling-weekly
+ghcr.io/aiscribe152-hermes/kasm-kicad:1.19.0-rolling-weekly-kicad10
 ghcr.io/aiscribe152-hermes/kasm-kicad:latest
 ```
 
@@ -126,6 +127,7 @@ In the Kasm administrator UI:
    ghcr.io/aiscribe152-hermes/kasm-openscad:1.19.0-rolling-weekly
    ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.19.0-rolling-weekly
    ghcr.io/aiscribe152-hermes/kasm-kicad:1.19.0-rolling-weekly
+   ghcr.io/aiscribe152-hermes/kasm-kicad:1.19.0-rolling-weekly-kicad10
    ```
 
 6. Set the image type/compatibility to use the Kasm desktop/VNC style defaults inherited from `kasmweb/core-ubuntu-jammy:1.19.0-rolling-weekly`.
