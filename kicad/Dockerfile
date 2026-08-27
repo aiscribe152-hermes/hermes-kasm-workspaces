@@ -56,6 +56,8 @@ COPY custom_startup.sh /dockerstartup/custom_startup.sh
 RUN chmod 0755 /dockerstartup/custom_startup.sh \
     && bash -n /dockerstartup/custom_startup.sh
 
-USER kasm-user
+# Kasm startup scripts must run as root so they can initialize /home/kasm-user,
+# copy the default profile, then drop privileges internally.
+USER root
 
 WORKDIR /home/kasm-user
