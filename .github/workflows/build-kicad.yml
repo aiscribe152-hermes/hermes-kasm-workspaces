@@ -60,10 +60,11 @@ jobs:
         run: |
           set -euo pipefail
           docker pull ghcr.io/aiscribe152-hermes/kasm-kicad:1.19.0-rolling-weekly
-          docker run -d --rm --name kicad-smoke \
+          docker run -d --name kicad-smoke \
+            --shm-size=512m \
             -e VNC_PW=smoke-test-password \
             ghcr.io/aiscribe152-hermes/kasm-kicad:1.19.0-rolling-weekly
-          cleanup() { docker logs kicad-smoke || true; docker rm -f kicad-smoke || true; }
+          cleanup() { docker inspect kicad-smoke --format '{{json .State}}' || true; docker logs kicad-smoke || true; docker rm -f kicad-smoke || true; }
           trap cleanup EXIT
           for _ in $(seq 1 90); do
             if docker exec kicad-smoke bash -lc 'pgrep -x kicad >/dev/null 2>&1'; then
