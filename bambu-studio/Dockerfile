@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1.7
 
-FROM kasmweb/core-ubuntu-jammy:1.19.0-rolling-weekly
+FROM kasmweb/desktop:1.19.0-rolling-weekly
 
 LABEL org.opencontainers.image.title="Kasm Bambu Studio Workspace" \
-      org.opencontainers.image.description="Small Kasm Workspaces desktop image for Bambu Studio slicing and 3D printing workflows." \
+      org.opencontainers.image.description="Kasm Workspaces desktop image for Bambu Studio slicing, 3D printing workflows, and Bambu OAuth." \
       org.opencontainers.image.version="1.19.0-rolling-weekly" \
       org.opencontainers.image.source="https://github.com/aiscribe152-hermes/hermes-kasm-workspaces"
 
