@@ -40,9 +40,7 @@ text/html=default-browser.desktop;
 EOF
 
   export BROWSER=/usr/local/bin/default-browser
-  if command -v xdg-settings >/dev/null 2>&1; then
-    xdg-settings set default-web-browser default-browser.desktop >/dev/null 2>&1 || true
-  fi
+  command -v update-desktop-database >/dev/null 2>&1 && update-desktop-database "$HOME/.local/share/applications" >/dev/null 2>&1 || true
 }
 
 start_bambu_studio() {
