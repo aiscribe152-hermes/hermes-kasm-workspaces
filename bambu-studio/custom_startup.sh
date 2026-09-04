@@ -46,7 +46,9 @@ EOF
 start_bambu_studio() {
   export DISPLAY="${DISPLAY:-:1}"
   export HOME="${HOME:-/home/kasm-user}"
-  export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
+  # Include /etc for xfce4-session; Kasm may source this file into the
+  # desktop startup environment.
+  export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg:/etc}"
   export SSL_CERT_FILE="${SSL_CERT_FILE:-/etc/ssl/certs/ca-certificates.crt}"
   export SSL_CERT_DIR="${SSL_CERT_DIR:-/etc/ssl/certs}"
   export BROWSER="${BROWSER:-/usr/local/bin/default-browser}"
