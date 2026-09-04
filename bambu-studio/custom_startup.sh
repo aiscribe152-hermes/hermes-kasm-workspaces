@@ -8,6 +8,9 @@ APP_MATCH=/opt/bambu-studio/squashfs-root/bin/bambu-studio
 start_bambu_studio() {
   export DISPLAY="${DISPLAY:-:1}"
   export HOME="${HOME:-/home/kasm-user}"
+  export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
+  export SSL_CERT_FILE="${SSL_CERT_FILE:-/etc/ssl/certs/ca-certificates.crt}"
+  export SSL_CERT_DIR="${SSL_CERT_DIR:-/etc/ssl/certs}"
 
   for _ in $(seq 1 60); do
     if command -v xdpyinfo >/dev/null 2>&1 && xdpyinfo -display "$DISPLAY" >/dev/null 2>&1; then

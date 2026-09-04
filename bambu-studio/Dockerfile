@@ -9,7 +9,9 @@ LABEL org.opencontainers.image.title="Kasm Bambu Studio Workspace" \
 
 USER root
 
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive \
+    SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
+    SSL_CERT_DIR=/etc/ssl/certs
 
 ARG BAMBU_STUDIO_VERSION=02.08.02.61
 ARG BAMBU_STUDIO_BUILD=20260820225108
@@ -19,8 +21,10 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
+        dbus-x11 \
         fonts-liberation \
         libfuse2 \
+        libgl1-mesa-dri \
         libu2f-udev \
         libwebkit2gtk-4.1-0 \
         wget \
@@ -87,6 +91,9 @@ COPY custom_startup.sh /dockerstartup/custom_startup.sh
 RUN chmod 0755 /dockerstartup/custom_startup.sh \
     && bash -n /dockerstartup/custom_startup.sh
 
-USER kasm-user
+# Kasm startup scripts must run as root so they can initialize /home/kasm-user,
+# copy the default profile, then drop privileges internally. Running this image
+# directly as kasm-user can leave XFCE unable to load its failsafe session.
+USER root
 
 WORKDIR /home/kasm-user

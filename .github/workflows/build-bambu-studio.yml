@@ -49,7 +49,7 @@ jobs:
           sbom: false
           tags: |
             ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.19.0-rolling-weekly
-            ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.19.0-rolling-weekly-bambu-2.8.2.61
+            ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.19.0-rolling-weekly-bambu-2.8.2.61-r2
             ghcr.io/aiscribe152-hermes/kasm-bambu-studio:latest
           labels: |
             org.opencontainers.image.title=Kasm Bambu Studio Workspace
@@ -60,11 +60,11 @@ jobs:
       - name: Smoke test published Bambu Studio workspace image
         run: |
           set -euo pipefail
-          docker pull ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.19.0-rolling-weekly-bambu-2.8.2.61
+          docker pull ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.19.0-rolling-weekly-bambu-2.8.2.61-r2
           docker run -d --name bambu-studio-smoke \
             --shm-size=1g \
             -e VNC_PW=smoke-test-password \
-            ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.19.0-rolling-weekly-bambu-2.8.2.61
+            ghcr.io/aiscribe152-hermes/kasm-bambu-studio:1.19.0-rolling-weekly-bambu-2.8.2.61-r2
           cleanup() { docker inspect bambu-studio-smoke --format '{{json .State}}' || true; docker logs bambu-studio-smoke || true; docker rm -f bambu-studio-smoke || true; }
           trap cleanup EXIT
           for _ in $(seq 1 120); do
@@ -77,4 +77,4 @@ jobs:
             fi
             sleep 1
           done
-          docker exec bambu-studio-smoke bash -lc '/usr/local/bin/bambu-studio --version || true; pgrep -af bambu-studio; test -s /tmp/bambu-studio-startup.log || true; cat /tmp/bambu-studio-startup.log || true'
+          docker exec bambu-studio-smoke bash -lc 'test "$(id -u)" -eq 0; test "${SSL_CERT_FILE}" = /etc/ssl/certs/ca-certificates.crt; /usr/local/bin/bambu-studio --version || true; pgrep -af bambu-studio; test -s /tmp/bambu-studio-startup.log || true; cat /tmp/bambu-studio-startup.log || true'
