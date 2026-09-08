@@ -22,6 +22,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
+        dbus-user-session \
         dbus-x11 \
         fonts-liberation \
         libfuse2 \
@@ -30,6 +31,9 @@ RUN apt-get update \
         libwebkit2gtk-4.1-0 \
         wget \
         xdg-utils \
+        xfce4-session \
+        xfce4-settings \
+        xfconf \
     && mkdir -p /opt/bambu-studio \
     && curl -fL "${BAMBU_STUDIO_APPIMAGE_URL}" -o /tmp/BambuStudio.AppImage \
     && chmod 0755 /tmp/BambuStudio.AppImage \
