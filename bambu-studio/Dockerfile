@@ -58,7 +58,7 @@ RUN apt-get update \
        fi \
     && wget -q -O /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
     && apt-get install -y --no-install-recommends /tmp/google-chrome-stable_current_amd64.deb \
-    && printf '%s\n' '#!/usr/bin/env bash' 'exec /usr/bin/google-chrome-stable --no-sandbox --disable-dev-shm-usage --password-store=basic "$@"' > /usr/local/bin/default-browser \
+    && printf '%s\n' '#!/usr/bin/env bash' 'exec /usr/bin/google-chrome-stable --no-sandbox --disable-dev-shm-usage --password-store=basic --no-first-run --no-default-browser-check --disable-search-engine-choice-screen "$@"' > /usr/local/bin/default-browser \
     && chmod 0755 /usr/local/bin/default-browser \
     && update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/local/bin/default-browser 200 \
     && update-alternatives --set x-www-browser /usr/local/bin/default-browser \
